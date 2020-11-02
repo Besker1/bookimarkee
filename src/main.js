@@ -3,7 +3,7 @@ import store from './store';
 import templates from './templates';
 import api from './api';
 
-const setupEventHandlers = () => {
+const setupEventListeners = () => {
 
 // event handlers
 
@@ -31,6 +31,7 @@ const render = () => {
 }
 
 const main = () => {
+    // setup event listeners
     // call the api to get list of initial bookmarks to populate the store
     // then render
     render();
