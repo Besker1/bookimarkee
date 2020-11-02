@@ -1,16 +1,17 @@
 const main_page = (store) => {
+    console.log(store.filter)
     return `<header>
                 <h1>Bookmark App</h1>
                 <div class="mainpage-buttons">
-                    <button>New Bookmark</button>
+                    <button id="mainpage-button-newbookmark">New Bookmark</button>
                     <div class="mainpage-button-wrap">
                         <label for="mainpage-filter">Filter By</label>
                         <select id="mainpage-filter" name="mainpage-filter">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                            <option value="1" ${store.filter === 1 ? 'selected=true':''}>1</option>
+                            <option value="2" ${store.filter === 2 ? 'selected=true':''}>2</option>
+                            <option value="3" ${store.filter === 3 ? 'selected=true':''}>3</option>
+                            <option value="4" ${store.filter === 4 ? 'selected=true':''}>4</option>
+                            <option value="5" ${store.filter === 5 ? 'selected=true':''}>5</option>
                         </select>
                     </div>
             </header>
@@ -25,7 +26,7 @@ const addbookmark_page = () => {
     return `<header>
                 <h1>Bookmark App</h1>
             </header>
-            <form>
+            <form id="addbookmark-form">
                 <label for="addbookmark-url">Add New Bookmark</label>
                 <input type="text" id="addbookmark-url" name="addbookmark-url" placeholder="https://google.com" />
                 <label for="addbookmark-title">New Bookmark Title</label>
@@ -34,13 +35,13 @@ const addbookmark_page = () => {
                 <input type="number" min=1 max=5 id="addbookmark-rating" name="addbookmark-rating" />
                 <label for="addbookmark-description">Description</label>
                 <textarea id="addbookmark-description" name="addbookmark-description"></textarea>
-                <button>Cancel</button>
+                <button id="addbookmark-cancel">Cancel</button>
                 <button type="submit">Create Bookmark</button>
             </form>`
 }
 
 const bookmark_list = (store) => {
-    return store.bookmarks.map(create_bookmark).join("")
+    return store.bookmarks.filter(bookmark => bookmark.rating >= store.filter).map(create_bookmark).join("")
 }
 
 const create_bookmark = (bookmark) => {
@@ -48,15 +49,15 @@ const create_bookmark = (bookmark) => {
                 <div class="bookmark-item-title">
                     ${bookmark.title}
                 </div>
-                <div class="bookmark-item-button-delete">
-                    <button>DELETE</button>
+                <div class="bookmark-item-button">
+                    <button class="bookmark-item-button-delete">DELETE</button>
                 </div>
                 <div class="bookmark-item-rating">${bookmark.rating}</div>
                 <div class="bookmark-item-link">
                     <a href="${bookmark.url}">Visit Site</a>
                 </div>
                 <div class="bookmark-item-description">
-                    ${bookmark.description}
+                    ${bookmark.desc}
                 </div>
             </li>`
 }
