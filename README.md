@@ -1,4 +1,4 @@
-# webpack starter for paint
+# Besker Bookmark App
 
 ## Install
 
