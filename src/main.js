@@ -15,13 +15,7 @@ const setupEventListeners = () => {
         }
     });
 
-    
-    // // individual bookmark item view descriptions on main page
-    window.addEventListener('click', (e)=>{
-        // handle button click
-    });
-
-    // // individual bookmark item view descriptions on main page
+    // // delete bookmark item with id
     window.addEventListener('click', (e)=>{
         // handle button click
         if (e.target.classList.contains('bookmark-item-button-delete')) {
@@ -29,6 +23,14 @@ const setupEventListeners = () => {
             api.deleteBookmark(id, ()=>{
                 render();
             })
+        }
+    });
+
+    // // individual bookmark item view descriptions on main page
+    window.addEventListener('click', (e)=>{
+        // handle button click
+        if (e.target.classList.contains('bookmark-item') && !e.target.classList.contains('bookmark-item-button-delete')) {
+            e.target.classList.toggle("expanded");
         }
     });
     
@@ -88,7 +90,10 @@ const render = () => {
 
     if ( store.page === 'main' ) {
         api.getBookmarks(bookmarks => {
-            store.bookmarks = bookmarks;
+            store.bookmarks = bookmarks.map(b => {
+                if ("expanded" in b) return b;
+                return {...b,expanded:false}
+            });
             main.innerHTML = templates.main_page(store); //render main page using template function templates.main_page;
         });
     }

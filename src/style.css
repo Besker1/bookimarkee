@@ -1,0 +1,17 @@
+
+.bookmark-item.expanded > .bookmark-item-rating {
+    display:none;
+}
+
+.bookmark-item:not(.expanded) .bookmark-item-content-wrapper {
+    display: none;
+}
+
+.bookmark-item.expanded .bookmark-item-content-wrapper {
+    display: flex;
+    flex-flow: column;
+}
+
+.bookmark-item {
+    padding:1rem;
+}

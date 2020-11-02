@@ -1,5 +1,4 @@
 const main_page = (store) => {
-    console.log(store.filter)
     return `<header>
                 <h1>Bookmark App</h1>
                 <div class="mainpage-buttons">
@@ -28,11 +27,11 @@ const addbookmark_page = () => {
             </header>
             <form id="addbookmark-form">
                 <label for="addbookmark-url">Add New Bookmark</label>
-                <input type="text" id="addbookmark-url" name="addbookmark-url" placeholder="https://google.com" />
+                <input type="text" id="addbookmark-url" name="addbookmark-url" placeholder="https://google.com" required/>
                 <label for="addbookmark-title">New Bookmark Title</label>
-                <input type="text" id="addbookmark-title" name="addbookmark-title" placeholder="The Google" />
+                <input type="text" id="addbookmark-title" name="addbookmark-title" placeholder="The Google" required/>
                 <label for="addbookmark-rating">Rating</label>
-                <input type="number" min=1 max=5 id="addbookmark-rating" name="addbookmark-rating" />
+                <input type="number" min=1 max=5 id="addbookmark-rating" name="addbookmark-rating" value=3 required/>
                 <label for="addbookmark-description">Description</label>
                 <textarea id="addbookmark-description" name="addbookmark-description"></textarea>
                 <button id="addbookmark-cancel">Cancel</button>
@@ -49,15 +48,18 @@ const create_bookmark = (bookmark) => {
                 <div class="bookmark-item-title">
                     ${bookmark.title}
                 </div>
+                <div class="bookmark-item-rating ${bookmark.expanded ? 'expanded':''}">${bookmark.rating}</div>
                 <div class="bookmark-item-button">
                     <button class="bookmark-item-button-delete">DELETE</button>
                 </div>
-                <div class="bookmark-item-rating">${bookmark.rating}</div>
-                <div class="bookmark-item-link">
-                    <a href="${bookmark.url}">Visit Site</a>
-                </div>
-                <div class="bookmark-item-description">
-                    ${bookmark.desc}
+                <div class="bookmark-item-content-wrapper ${bookmark.expanded ? 'expanded':''}">
+                    <div class="bookmark-item-rating">${bookmark.rating}</div>
+                    <div class="bookmark-item-link">
+                        <a href="${bookmark.url}">Visit Site</a>
+                    </div>
+                    <div class="bookmark-item-description">
+                        ${bookmark.desc}
+                    </div>
                 </div>
             </li>`
 }
