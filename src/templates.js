@@ -22,7 +22,21 @@ const main_page = (store) => {
 }
 
 const addbookmark_page = () => {
-    return `template for addbookmark page`
+    return `<header>
+                <h1>Bookmark App</h1>
+            </header>
+            <form>
+                <label for="addbookmark-url">Add New Bookmark</label>
+                <input type="text" id="addbookmark-url" name="addbookmark-url" placeholder="https://google.com" />
+                <label for="addbookmark-title">New Bookmark Title</label>
+                <input type="text" id="addbookmark-title" name="addbookmark-title" placeholder="The Google" />
+                <label for="addbookmark-rating">Rating</label>
+                <input type="number" min=1 max=5 id="addbookmark-rating" name="addbookmark-rating" />
+                <label for="addbookmark-description">Description</label>
+                <textarea id="addbookmark-description" name="addbookmark-description"></textarea>
+                <button>Cancel</button>
+                <button type="submit">Create Bookmark</button>
+            </form>`
 }
 
 const bookmark_list = (store) => {
